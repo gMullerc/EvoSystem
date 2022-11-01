@@ -1,0 +1,77 @@
+<div class="row">
+<div class="col-sm-6" *ngIf="departamentosSelecionado">
+  
+  <div class="row ">
+    <div class="col-sm-10">
+      <app-titulo [titulo] = "'Cod:' + departamentosSelecionado.id"></app-titulo>
+    </div>
+    <div class="col-sm-2 ms-auto mt-2" >
+      <button class="btn btn-outline-danger btn-sm" (click)="voltar()">Fechar</button>
+    </div>
+  </div>
+  
+
+
+  <form [formGroup]="departamentoForm" (submit)="departamentoSubmit()">
+    <div class="form-group">
+      <label for="formGroupExampleInput">Nome</label>
+      <input type="text" formControlName="nome" class="form-control" >
+    </div>
+    <div class="form-group">
+      <label for="formGroupExampleInput2">Sigla</label>
+      <input type="text" formControlName="sigla" class="form-control" >
+    </div>
+    <div class="form-group">
+      <hr>
+      <button class="btn btn-success" [disabled]="!departamentoForm.valid">Salvar</button>
+    </div>
+
+  </form>
+
+</div>
+<div [ngClass]="{'col-sm-6': departamentosSelecionado, 'col-sm-12': !departamentosSelecionado}">
+  <app-titulo [titulo] = "titulo"></app-titulo>
+
+  <table class="table table-dark table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Visualizar</th>
+        <th scope="col">Id</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Siglas</th>
+        <th scope="col">Opções</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dept of departamento" style="cursor: pointer;">
+        <td><button (click)="departamentosSelect(dept)" class="btn btn-outline-warning btn-sm">Visualizar</button></td>
+        <th scope="row">{{dept.id}}</th>
+        <td class="table-active">{{dept.nome}}</td>
+        <td>{{dept.sigla}}</td>
+        <td>
+          <div class="btn-group">
+            <button (click)="openModal(template)" class="btn btn-outline-primary btn-sm">Funcionários</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+</div>
+
+ 
+<ng-template #template>
+  <div class="modal-body">
+    <app-funcionarios></app-funcionarios>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn pull-right" aria-label="Close" (click)="modalRef?.hide()">
+
+      Fechar
+
+    </button>
+  </div>
+</ng-template>

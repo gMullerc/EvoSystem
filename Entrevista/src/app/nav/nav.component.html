@@ -1,0 +1,35 @@
+<nav class="navbar navbar-dark  navbar-expand-lg" style="background-color: #000000;">
+<div class="container">
+    
+      <picture routerLink="inicio" class="navbar-brand">
+        <img  class='logo img-fluid img-thumbnail'  alt="" src="https://static.wixstatic.com/media/ee8675_60bad0a328b14a66aaed63b0ff49b9ca~mv2.png/v1/fill/w_205,h_34,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/logo%20evo%201.png 1x, https://static.wixstatic.com/media/ee8675_60bad0a328b14a66aaed63b0ff49b9ca~mv2.png/v1/fill/w_386,h_64,al_c,lg_1,q_85,enc_auto/logo%20evo%201.png 2x">
+      </picture>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse"  id="navbarNavDropdown">
+        <ul class="navbar-nav col-sm-10">
+          <li class="nav-item">
+            <a routerLink="funcionarios" routerLinkActive="active" class="nav-link">funcionarios</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="departamento" routerLinkActive="active" class="nav-link">Departamentos</a>
+          </li>
+
+        </ul>
+          <ul class="navbar-nav col-sm-2" dropdown>
+          <li class="nav-item dropdown">
+            <a id="button-basic" dropdownToggle class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" style="cursor: pointer" data-bs-toggle="dropdown" aria-expanded="false">
+              Guilherme
+            </a>
+            <ul id="dropdown-basic" *dropdownMenu  class="dropdown-menu">
+              <li><a routerLink="perfil" class="dropdown-item" >Perfil</a></li>
+              <li><a class="dropdown-item" href="#">Sair</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+</nav>

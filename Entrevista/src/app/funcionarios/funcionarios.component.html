@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col-sm-12" *ngIf="funcionarioSelecionado">
+    <div class="row">
+      <div class="col-sm-11">
+        <app-titulo [titulo] = "'Cod:' + funcionarioSelecionado.id"></app-titulo>
+      </div>
+      <div class="col-sm-1 ms-auto mt-2" >
+        <button class=" btn-md btn-sm btn btn-outline-danger" (click)="voltar()">Fechar</button>
+      </div>
+    </div>
+    
+    
+    
+    <form [formGroup]="funcionarioForm" (submit)="funcionarioSubmit()">
+      <div class="form-group">
+        <label for="formGroupExampleInput"></label>
+        <input type="text" formControlName="nome" class="form-control" >
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput2"></label>
+        <input type="text" formControlName="sobrenome" class="form-control" >
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput2"></label>
+        <input type="text" formControlName="telefone" class="form-control" >
+      </div>
+      <div class="form-group">
+        <hr>
+        <button class="btn btn-success" [disabled]="!funcionarioForm.valid">Salvar</button>
+      </div>
+    </form>
+    
+  </div>
+  <div class="col-12">
+    
+    <app-titulo [titulo] = "titulo"></app-titulo>
+    <table class="table table-responsive-sm table-dark table-hover">
+      <thead>
+        <th scope="col">Visualizar</th>
+        <th scope="col">ID</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Foto</th>
+        <th scope="col">RG</th>
+        <th scope="col">deptId</th>
+        <th scope="col">Opções</th>
+      </thead>
+      <tbody>
+        
+        <tr *ngFor="let funcionario of funcionarios">
+        <td><div class="btn-group" (click)="funcionarioSelect(funcionario)"><button class=" btn btn-sm btn-outline-warning">Detalhe</button></div></td>
+        <td scope="row">{{funcionario.id}}</td>
+        <td class="table-active">{{funcionario.nome}}</td>
+        <td>{{funcionario.foto}}</td>
+        <td>{{funcionario.RG}}</td>
+        <td>{{funcionario.deptId}}</td>
+        <td [colSpan]="2">
+          <div class="btn-group d-flex justify-content-around ">
+            <button (click)="openModal(template)" class="btn btn-sm btn-outline-primary">Departamento</button>
+            <button class="btn btn-sm btn-outline-danger">Excluir</button>
+          </div>
+        </td>
+        
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+ 
+<ng-template #template  class="modal fade" >
+
+    <div class="modal-body">
+      <app-departamento></app-departamento>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn pull-right" aria-label="Close" (click)="modalRef?.hide()">
+
+        Fechar
+
+      </button>
+    </div>
+ 
+</ng-template>
