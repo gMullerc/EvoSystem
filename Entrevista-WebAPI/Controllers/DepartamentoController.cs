@@ -82,27 +82,27 @@ namespace Entrevista_WebAPI.Controllers
 
             return BadRequest();
         }
-        [HttpPut("{departamentoId}")]
-
+        [HttpPut ("{departamentoId}")]
         public async Task<IActionResult> put(int departamentoId, Departamento model)
         {
             try
             {
-                var Departamento = await _repo.GetDepartamentoAsyncById(departamentoId, false);
-                if(Departamento == null) return NotFound();
+                var Departamento = await _repo.GetFuncionarioAsyncById(departamentoId, false);
+                if(Departamento == null) return NotFound("Aluno Não encontrado");
 
+            
                 _repo.Update(model);
 
                 if(await _repo.SaveChangesAsync())
                 {
                     return Ok(model);
-                }
+                }                
             }
             catch (Exception ex)
             {
-                
                 return BadRequest($"Erro: {ex.Message}");
             }
+
             return BadRequest();
         }
 

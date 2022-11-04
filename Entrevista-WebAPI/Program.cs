@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+
 builder.Services.AddDbContext<DataContext>(options => options.UseSqlite("Data Source= SmartSchool.db"));
 
 builder.Services.AddControllers()
@@ -27,9 +28,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
-app.UseAuthorization();
+//app.UseAuthorization();
+
+app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 app.MapControllers();
 

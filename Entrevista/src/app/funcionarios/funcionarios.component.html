@@ -1,27 +1,22 @@
 <div class="row">
   <div class="col-sm-12" *ngIf="funcionarioSelecionado">
-    <div class="row">
-      <div class="col-sm-11">
-        <app-titulo [titulo] = "'Cod:' + funcionarioSelecionado.id"></app-titulo>
-      </div>
-      <div class="col-sm-1 ms-auto mt-2" >
-        <button class=" btn-md btn-sm btn btn-outline-danger" (click)="voltar()">Fechar</button>
-      </div>
-    </div>
-    
-    
-    
+
+        <app-titulo [titulo] = "(funcionarioSelecionado.id === 0 ? 'Novo Funcionario' : 'Funcionario: ' + funcionarioSelecionado.id)">
+          <button class=" btn-md btn-sm btn btn-outline-danger" (click)="voltar()">Fechar</button>
+        </app-titulo>
+
+
     <form [formGroup]="funcionarioForm" (submit)="funcionarioSubmit()">
       <div class="form-group">
-        <label for="formGroupExampleInput"></label>
+        <label for="formGroupExampleInput">Nome</label>
         <input type="text" formControlName="nome" class="form-control" >
       </div>
       <div class="form-group">
-        <label for="formGroupExampleInput2"></label>
+        <label for="formGroupExampleInput2">SobreNome</label>
         <input type="text" formControlName="sobrenome" class="form-control" >
       </div>
       <div class="form-group">
-        <label for="formGroupExampleInput2"></label>
+        <label for="formGroupExampleInput2">Telefone</label>
         <input type="text" formControlName="telefone" class="form-control" >
       </div>
       <div class="form-group">
@@ -33,15 +28,20 @@
   </div>
   <div class="col-12">
     
-    <app-titulo [titulo] = "titulo"></app-titulo>
-    <table class="table table-responsive-sm table-dark table-hover">
+    <app-titulo [titulo] = "titulo">
+      <button class=" btn btn-success" (click)="funcionarioNovo()">
+        Cadastrar Funcionario
+      </button>
+     
+
+    </app-titulo>
+    <table class="table table-striped table-responsive-sm table-hover">
       <thead>
         <th scope="col">Visualizar</th>
         <th scope="col">ID</th>
         <th scope="col">Nome</th>
-        <th scope="col">Foto</th>
-        <th scope="col">RG</th>
-        <th scope="col">deptId</th>
+        <th scope="col">sobrenome</th>
+        <th scope="col">Telefone</th>
         <th scope="col">Opções</th>
       </thead>
       <tbody>
@@ -50,13 +50,12 @@
         <td><div class="btn-group" (click)="funcionarioSelect(funcionario)"><button class=" btn btn-sm btn-outline-warning">Detalhe</button></div></td>
         <td scope="row">{{funcionario.id}}</td>
         <td class="table-active">{{funcionario.nome}}</td>
-        <td>{{funcionario.foto}}</td>
-        <td>{{funcionario.RG}}</td>
-        <td>{{funcionario.deptId}}</td>
+        <td class="table-active">{{funcionario.sobrenome}}</td>
+        <td class="table-active">{{funcionario.telefone}}</td>
         <td [colSpan]="2">
-          <div class="btn-group d-flex justify-content-around ">
+          <div class="btn-group d-flex justify-content-start ">
             <button (click)="openModal(template)" class="btn btn-sm btn-outline-primary">Departamento</button>
-            <button class="btn btn-sm btn-outline-danger">Excluir</button>
+            <button class="btn btn-sm btn-outline-danger" (click)="Deletar(funcionario.id)">Excluir</button>
           </div>
         </td>
         

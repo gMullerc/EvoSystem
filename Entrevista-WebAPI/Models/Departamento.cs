@@ -19,7 +19,7 @@ namespace Entrevista_WebAPI.Models
 
         public string Nome { get; set; }
         
-        public IEnumerable<Cargo> Cargos {get; set;}
+        public IEnumerable<Cargo> ?Cargos {get; set;}
        
     }
 }
